@@ -1,0 +1,15 @@
+初始化:
+sudo bash 
+
+列出可以录制的包文件:
+
+
+查看包信息:
+rosbag info bagname.bag
+
+播放查看录制的包:
+打开rviz
+rosrun rviz rviz -d sensor.rviz
+启动roscore并循环播放包:
+roscore
+rosbag play bagname.bag -l
