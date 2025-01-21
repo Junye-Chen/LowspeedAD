@@ -1,0 +1,6 @@
+Symlinking /home/hcp/Workspace/ros_ws/devel/share/fdilink_ahrs/cmake/fdilink_ahrsConfig.cmake
+Symlinking /home/hcp/Workspace/ros_ws/devel/share/fdilink_ahrs/cmake/fdilink_ahrsConfig-version.cmake
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/libcrc_table.so
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/pkgconfig/fdilink_ahrs.pc
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/fdilink_ahrs/imu_tf
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/fdilink_ahrs/ahrs_driver

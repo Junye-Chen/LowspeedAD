@@ -1,0 +1,4 @@
+Symlinking /home/hcp/Workspace/ros_ws/devel/share/zed_wrapper/cmake/zed_wrapperConfig-version.cmake
+Symlinking /home/hcp/Workspace/ros_ws/devel/share/zed_wrapper/cmake/zed_wrapperConfig.cmake
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/pkgconfig/zed_wrapper.pc
+Symlinking /home/hcp/Workspace/ros_ws/devel/lib/zed_wrapper/zed_wrapper_node

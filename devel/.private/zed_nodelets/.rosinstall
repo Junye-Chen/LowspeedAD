@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/hcp/Workspace/ros_ws/devel/.private/zed_nodelets/setup.sh

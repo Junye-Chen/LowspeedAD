@@ -1,0 +1,1 @@
+/home/hcp/Workspace/ros_ws/devel/.private/rslidar_sdk/share/rslidar_sdk/cmake/rslidar_sdkConfig.cmake
