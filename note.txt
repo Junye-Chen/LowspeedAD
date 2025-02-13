@@ -1,7 +1,11 @@
 初始化:
-sudo bash 
+sudo bash start.sh
 
 列出可以录制的包文件:
+
+
+录制数据:
+bash ros_record.sh
 
 
 查看包信息:

@@ -33,14 +33,27 @@ echo "数据将保存到: $FILENAME"
 # - 激光雷达话题
 # - IMU话题
 # 修改以下话题名称以选择需要录制的话题
+# rosbag record -O $FILENAME \
+#     /zed2/zed_node/rgb/image_rect_color \
+#     /zed2/zed_node/depth/depth_registered \
+#     /zed2/zed_node/rgb_raw/image_raw_color \
+#     /rslidar_points \
+#     /sensor_imu \
+#     /rslidar_left_points \
+#     /rslidar_right_points \
+#     __name:=data_recorder
+
+
+# todo
+# 这个imu和gps的topic怎么都不见了,检查硬件和驱动权限
+
 rosbag record -O $FILENAME \
-    /zed2/zed_node/rgb/image_rect_color \
+    /zed2/zed_node/rgb/image_rect_color/compressed \
     /zed2/zed_node/depth/depth_registered \
-    /zed2/zed_node/rgb_raw/image_raw_color \
-    /rslidar_points \
+    /zed2/zed_node/rgb_raw/image_raw_color/compressed \
     /sensor_imu \
-    /rslidar_left_points \
-    /rslidar_right_points \
+    /rslidar_left_packets \
+    /rslidar_right_packets \
     __name:=data_recorder
 
 # 定义清理函数
