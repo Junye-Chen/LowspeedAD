@@ -1,0 +1,3 @@
+[submodule "src/rslidar_sdk"]
+path = src/rslidar_sdk
+url = https://github.com/Junye-Chen/rslidar_sdk.git
