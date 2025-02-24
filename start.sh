@@ -54,32 +54,18 @@ sleep 2
 roslaunch fdilink_ahrs ahrs_data.launch &
 sleep 2
 
-# # 创建输出目录
-# OUTPUT_DIR="$(pwd)/output"
-# mkdir -p $OUTPUT_DIR
+# 启动rtk/GPS
+# roslaunch nmea_navsat_driver /opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch port:=/dev/ttyUSB2 &
+# 这个launch文件在:/opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch
 
-# # 获取当前时间作为文件名
-# TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-# FILENAME="$OUTPUT_DIR/sensor_data_$TIMESTAMP.bag"
+roslaunch nmea_navsat_driver nmea_serial_driver.launch &
+sleep 2
 
-# echo "开始录制数据..."
-# echo "数据将保存到: $FILENAME"
-
-# # 启动数据录制
-# rosbag record -O $FILENAME \
-#     /zed2/zed_node/rgb/image_rect_color \
-#     /zed2/zed_node/depth/depth_registered \
-#     /zed2/zed_node/point_cloud/cloud_registered \
-#     /rslidar_points \
-#     /sensor_imu \
-#     __name:=data_recorder &
 
 echo "正在启动rviz..."
 rosrun rviz rviz -d sensor.rviz &
 
-# echo "系统已启动完成"
-# echo "正在录制数据到: $FILENAME"
-# echo "按Ctrl+C停止所有程序和数据录制"
+echo "系统已启动完成"
 
 # 等待Ctrl+C信号
 wait

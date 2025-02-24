@@ -37,24 +37,70 @@ echo "数据将保存到: $FILENAME"
 #     /zed2/zed_node/rgb/image_rect_color \
 #     /zed2/zed_node/depth/depth_registered \
 #     /zed2/zed_node/rgb_raw/image_raw_color \
-#     /rslidar_points \
+#     /fix \
 #     /sensor_imu \
 #     /rslidar_left_points \
 #     /rslidar_right_points \
 #     __name:=data_recorder
 
 
-# todo
-# 这个imu和gps的topic怎么都不见了,检查硬件和驱动权限
+# rosbag record -O $FILENAME \
+#     /zed2/zed_node/left/image_rect_color \
+#     /zed2/zed_node/right/image_rect_color \
+#     /zed2/zed_node/depth/depth_registered \
+#     /sensor_imu \
+#     /fix \
+#     /rslidar_left_packets \
+#     /rslidar_right_packets \
+#     __name:=data_recorder
 
+
+# 分别保存了两个相机的图像,可以使用更先进的双目depth算法来求解深度
+# 同时保留了自带的深度结果作为参考,confidence_map表示深度图的置信度
 rosbag record -O $FILENAME \
-    /zed2/zed_node/rgb/image_rect_color/compressed \
-    /zed2/zed_node/depth/depth_registered \
-    /zed2/zed_node/rgb_raw/image_raw_color/compressed \
+    /zed2/zed_node/left_raw/image_raw_color \
+    /zed2/zed_node/right_raw/image_raw_color \
     /sensor_imu \
-    /rslidar_left_packets \
-    /rslidar_right_packets \
+    /fix \
+    /rslidar_left_points \
+    /rslidar_right_points \
     __name:=data_recorder
+
+# rosbag record -O $FILENAME \
+#     /zed2/zed_node/left/image_rect_color \
+#     /zed2/zed_node/right/image_rect_color \
+#     /zed2/zed_node/right/camera_info \
+#     /zed2/zed_node/depth/depth_registered \
+#     /zed2/zed_node/depth/camera_info \
+#     /zed2/zed_node/confidence/confidence_map \
+#     /sensor_imu \
+#     /fix \
+#     /zed2/zed_node/imu/data_raw \
+#     /rslidar_left_packets \
+#     /rslidar_right_packets \
+#     __name:=data_recorder
+
+
+# rosbag record -O $FILENAME \
+#     /zed2/zed_node/right/image_rect_color \ 
+#     __name:=data_recorder
+
+
+# 直接录制双目的图像
+# /zed2/zed_node/stereo/image_rect_color
+
+# rosbag record -O $FILENAME \
+#     /zed2/zed_node/disparity/disparity_image \
+#     /zed2/zed_node/point_cloud/cloud_registered \
+#     /zed2/zed_node/confidence/confidence_map \
+#     __name:=data_recorder
+
+# TODO
+# 确定是有数据的,但不知道怎么查看这两个话题
+# /zed2/zed_node/disparity/disparity_image \
+#     /zed2/zed_node/point_cloud/cloud_registered
+
+
 
 # 定义清理函数
 cleanup() {

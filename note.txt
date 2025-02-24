@@ -1,14 +1,21 @@
+# 录制数据的流程
+
+首先执行时间同步.打开workspace下的timesync.sh文件,
+先执行第一条命令,然后重复多次执行第二条,直到*号对上的时钟延迟<10ms.
+
 初始化:
 sudo bash start.sh
 
 列出可以录制的包文件:
+rostopic list
 
+修改
 
-录制数据:
+选好需要的topic以后开始录制数据:
 bash ros_record.sh
 
 
-查看包信息:
+查看录制包信息:
 rosbag info bagname.bag
 
 播放查看录制的包:
@@ -17,3 +24,36 @@ rosrun rviz rviz -d sensor.rviz
 启动roscore并循环播放包:
 roscore
 rosbag play bagname.bag -l
+
+
+使用PlotJuggler可视化数据图
+roscore
+rosrun plotjuggler plotjuggler  
+
+
+启动rtk定位:
+我尝试使用下面的命令打开
+roslaunch nmea_navsat_driver nmea_serial_driver.launch port:=/dev/ttyUSB1 _baud:=115200
+这个launch文件在:/opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch
+目前的话是可以启动,但是收不到message,启动以后收到warning:
+[WARN] [1739524586.531506]: Received a sentence with an invalid checksum. Sentence was: ''
+[WARN] [1739524588.536469]: Received a sentence with an invalid checksum. Sentence was: ''
+[WARN] [1739524590.540924]: Received a sentence with an invalid checksum. Sentence was: ''
+[WARN] [1739524592.545140]: Received a sentence with an invalid checksum. Sentence was: ''
+继续排查...
+
+
+rosrun nmea_navsat_driver nmea_serial_driver _port:=/dev/ttyUSB1 _baud:=115200
+
+
+git remote set-url origin git@github.com:Junye-Chen/fdilink_ahrs.git
+git@github.com:Junye-Chen/fdilink_ahrs.git
+
+git commit -m "Initial commit"
+
+
+git submodule add https://github.com/Junye-Chen/zed-ros-wrapper.git src/zed-ros-wrapper
+git submodule add https://github.com/Junye-Chen/fdilink_ahrs.git src/fdilink_ahrs
+git submodule add https://github.com/Junye-Chen/rslidar_sdk.git src/rslidar_sdk
+git commit -m "Add submodules for third-party libraries"
+git push origin main
