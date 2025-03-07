@@ -5,15 +5,22 @@
 
 初始化:
 sudo bash start.sh
+    启动rtk定位:
+    这个launch文件在:/opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch
 
-列出可以录制的包文件:
+
+列出可以录制的topic:
 rostopic list
 
-修改
+查看对应topic的数据
+rostopic hz <topic name>
+
+修改ros_record.sh文件中的topic以选择需要录制的数据
 
 选好需要的topic以后开始录制数据:
 bash ros_record.sh
-
+------------------------------------------------
+# 查看数据
 
 查看录制包信息:
 rosbag info bagname.bag
@@ -31,19 +38,18 @@ roscore
 rosrun plotjuggler plotjuggler  
 
 
-启动rtk定位:
-这个launch文件在:/opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch
-
+-------------------------------------------------------------------
+# 传感器标定
 
 双目相机标定结果位置:
 /home/hcp/Workspace/ros_ws/src/zed-ros-wrapper/zed_wrapper/params/zed2_calibration.yaml
-相应的参数设置:
+相应的相机参数设置:
 general:
     camera_model:               'zed2'
     grab_resolution:            'HD2K'     # 'HD2K', 'HD1080', 'HD720', 'VGA', 'AUTO'
     grab_frame_rate:            15          # Frequency of frame grabbing for internal SDK operations
 depth:
-    min_depth:                  0.2         # Min: 0.2, Max: 3.0 - Default 0.7 - Note: reducing this value wil require more computational power and GPU memory
+    min_depth:                  0.2         # Min: 0.2, Max: 3.0 - Default 0.7 - Note: reducing this value will require more computational power and GPU memory
     max_depth:                  20.0        # Max: 40.0
 
 
@@ -53,9 +59,3 @@ lidar2lidar标定结果:
 这两个结果分别用不同的场景视频计算得到,对比差别不大
 
 
-
-git submodule add https://github.com/Junye-Chen/zed-ros-wrapper.git src/zed-ros-wrapper
-git submodule add https://github.com/Junye-Chen/fdilink_ahrs.git src/fdilink_ahrs
-git submodule add https://github.com/Junye-Chen/rslidar_sdk.git src/rslidar_sdk
-git commit -m "Add submodules for third-party libraries"
-git push origin main
