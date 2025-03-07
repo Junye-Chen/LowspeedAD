@@ -32,24 +32,26 @@ rosrun plotjuggler plotjuggler
 
 
 启动rtk定位:
-我尝试使用下面的命令打开
-roslaunch nmea_navsat_driver nmea_serial_driver.launch port:=/dev/ttyUSB1 _baud:=115200
 这个launch文件在:/opt/ros/noetic/share/nmea_navsat_driver/launch/nmea_serial_driver.launch
-目前的话是可以启动,但是收不到message,启动以后收到warning:
-[WARN] [1739524586.531506]: Received a sentence with an invalid checksum. Sentence was: ''
-[WARN] [1739524588.536469]: Received a sentence with an invalid checksum. Sentence was: ''
-[WARN] [1739524590.540924]: Received a sentence with an invalid checksum. Sentence was: ''
-[WARN] [1739524592.545140]: Received a sentence with an invalid checksum. Sentence was: ''
-继续排查...
 
 
-rosrun nmea_navsat_driver nmea_serial_driver _port:=/dev/ttyUSB1 _baud:=115200
+双目相机标定结果位置:
+/home/hcp/Workspace/ros_ws/src/zed-ros-wrapper/zed_wrapper/params/zed2_calibration.yaml
+相应的参数设置:
+general:
+    camera_model:               'zed2'
+    grab_resolution:            'HD2K'     # 'HD2K', 'HD1080', 'HD720', 'VGA', 'AUTO'
+    grab_frame_rate:            15          # Frequency of frame grabbing for internal SDK operations
+depth:
+    min_depth:                  0.2         # Min: 0.2, Max: 3.0 - Default 0.7 - Note: reducing this value wil require more computational power and GPU memory
+    max_depth:                  20.0        # Max: 40.0
 
 
-git remote set-url origin git@github.com:Junye-Chen/fdilink_ahrs.git
-git@github.com:Junye-Chen/fdilink_ahrs.git
+lidar2lidar标定结果:
+/home/hcp/Workspace/src/fast_gicp/lidar_calibration.yaml
+/home/hcp/Workspace/src/fast_gicp/lidar_calibration_2.yaml
+这两个结果分别用不同的场景视频计算得到,对比差别不大
 
-git commit -m "Initial commit"
 
 
 git submodule add https://github.com/Junye-Chen/zed-ros-wrapper.git src/zed-ros-wrapper

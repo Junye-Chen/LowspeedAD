@@ -2,8 +2,8 @@
 path = src/rslidar_sdk
 url = https://github.com/Junye-Chen/rslidar_sdk.git
 [submodule "src/fdilink_ahrs"]
-	path = src/fdilink_ahrs
-	url = https://github.com/Junye-Chen/fdilink_ahrs.git
+path = src/fdilink_ahrs
+url = https://github.com/Junye-Chen/fdilink_ahrs.git
 [submodule "src/zed-ros-wrapper"]
 path = src/zed-ros-wrapper
 url = https://github.com/Junye-Chen/zed-ros-wrapper.git
